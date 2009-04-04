@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FnmParserTest < Test::Unit::TestCase
+class RecordTest < Test::Unit::TestCase
   context 'single field' do
     setup do
       @class = Class.new(ParseFixed::Record) do
@@ -64,6 +64,28 @@ class FnmParserTest < Test::Unit::TestCase
       record.baz = 'hellosir'
       
       assert_equal 'foohihello', record.to_s
+    end
+  end
+end
+
+class FieldTest < Test::Unit::TestCase
+  context 'formatting a field' do
+    should 'use exactly the field width' do
+      f = ParseFixed::Field.new("abc", :length => 3)
+      
+      assert_equal 'abc', f.to_s
+    end
+    
+    should 'use no more than the field width' do
+      f = ParseFixed::Field.new("abcd", :length => 3)
+      
+      assert_equal 'abc', f.to_s
+    end
+    
+    should 'fill the entire field width' do
+      f = ParseFixed::Field.new("ab", :length => 3)
+      
+      assert_equal 'ab ', f.to_s
     end
   end
 end
