@@ -1,4 +1,4 @@
-module ParseFixed
+module Fixity
   class Record
     class << self
       attr_reader :field_order, :field_options
@@ -26,19 +26,6 @@ module ParseFixed
         str << @fields[field_name].to_s
         str
       end
-    end
-  end
-  
-  class Field
-    attr_accessor :length, :value
-    
-    def initialize(value, options = {})
-      self.length = options[:length]
-      self.value = value
-    end
-    
-    def to_s
-      sprintf("%-#{length}.#{length}s", value)
     end
   end
 end

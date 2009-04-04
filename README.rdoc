@@ -1,4 +1,4 @@
-= fnm_parser
+= fixity
 
 Description goes here.
 

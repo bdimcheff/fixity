@@ -4,10 +4,10 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "fnm_parser"
+    gem.name = "fixity"
     gem.summary = %Q{TODO}
     gem.email = "bdimchef-git@wieldim.com"
-    gem.homepage = "http://github.com/bdimcheff/fnm_parser"
+    gem.homepage = "http://github.com/bdimcheff/fixity"
     gem.authors = ["Brandon Dimcheff"]
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
