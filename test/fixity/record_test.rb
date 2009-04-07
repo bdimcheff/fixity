@@ -66,4 +66,23 @@ class RecordTest < Test::Unit::TestCase
       assert_equal 'foohihello', record.to_s
     end
   end
+  
+  context 'custom fields' do
+    setup do
+      field_class = Class.new(Fixity::Field) do
+        def to_s; "bar"; end
+      end
+      
+      @class = Class.new(Fixity::Record) do
+        field :foo, :class => field_class
+      end
+    end
+    
+    should 'use the custom class instead of the default' do
+      foo_record = @class.new
+      foo_record.foo = "foo"
+
+      assert_equal "bar", foo_record.to_s
+    end
+  end
 end

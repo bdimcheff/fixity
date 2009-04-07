@@ -12,7 +12,10 @@ module Fixity
         end
         
         define_method("#{field_name}=") do |val|
-          @fields[field_name] = Field.new(val, options)
+          klass = options.delete(:class)
+          klass ||= Field
+          
+          @fields[field_name] = klass.new(val, options)
         end
       end
     end
