@@ -85,4 +85,19 @@ class RecordTest < Test::Unit::TestCase
       assert_equal "bar", foo_record.to_s
     end
   end
+  
+  context 'hash input' do
+    setup do
+      @class = Class.new(Fixity::Record) do
+        field :foo, :length => 3
+        field :bar, :length => 6
+      end
+    end
+    
+    should 'load hash parameters' do
+      record = @class.new(:foo => "foo", :bar => "barbar")
+      
+      assert_equal "foobarbar", record.to_s
+    end
+  end
 end

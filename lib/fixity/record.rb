@@ -20,8 +20,15 @@ module Fixity
       end
     end
     
-    def initialize
+    def initialize(field_hash = nil)
       @fields = {}
+      update_attributes(field_hash)
+    end
+    
+    def update_attributes(attributes)
+      (attributes || []).each do |k, v|
+        send("#{k}=", v)
+      end
     end
         
     def to_s
