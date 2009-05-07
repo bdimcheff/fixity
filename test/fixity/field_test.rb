@@ -17,7 +17,7 @@ class FieldTest < Test::Unit::TestCase
     should 'fill the entire field width' do
       f = Fixity::Field.new("ab", :length => 3)
       
-      assert_equal 'ab ', f.to_s
+      assert_equal ' ab', f.to_s
     end
   end
 end

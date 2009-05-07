@@ -22,11 +22,11 @@ class RecordTest < Test::Unit::TestCase
       assert_equal "quu", foo_record.to_s
     end
     
-    should 'fill with spaces if the field is too long' do
+    should 'right align with spaces if the field is too long' do
       foo_record = @class.new
       foo_record.foo = 'hi'
       
-      assert_equal 'hi ', foo_record.to_s
+      assert_equal ' hi', foo_record.to_s
     end
   end
   
@@ -54,7 +54,7 @@ class RecordTest < Test::Unit::TestCase
       record.bar = 'h'
       record.baz = 'hell'
       
-      assert_equal 'fo h hell ', record.to_s
+      assert_equal ' fo h hell', record.to_s
     end
     
     should 'work for 3 long fields' do

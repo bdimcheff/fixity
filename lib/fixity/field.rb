@@ -8,7 +8,7 @@ module Fixity
     end
 
     def to_s
-      sprintf("%-#{length}.#{length}s", value)
+      sprintf("%#{length}.#{length}s", value)
     end
   end
 end
