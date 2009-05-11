@@ -6,6 +6,8 @@ module Fixity
       def field(field_name, options = {})
         @field_order ||= []
         @field_order << field_name.to_sym
+        @field_options ||= {}
+        @field_options[field_name] = options
         
         define_method(field_name) do
           @fields[field_name].value
@@ -22,6 +24,7 @@ module Fixity
     
     def initialize(field_hash = nil)
       @fields = {}
+      
       update_attributes(field_hash)
     end
     
@@ -33,7 +36,15 @@ module Fixity
         
     def to_s
       self.class.field_order.inject("") do |str, field_name|
-        str << @fields[field_name].to_s
+        field = @fields[field_name]
+        options = self.class.field_options[field_name]
+        
+        if field
+          str << @fields[field_name].to_s
+        else
+          str << " " * options[:length]
+        end
+        
         str
       end
     end

@@ -86,6 +86,22 @@ class RecordTest < Test::Unit::TestCase
     end
   end
   
+  context 'blank fields' do
+    setup do
+      @class = Class.new(Fixity::Record) do
+        field :foo, :length => 3
+        field :bar, :length => 2
+        field :baz, :length => 5
+      end
+    end
+    
+    should 'fill in the blank fields with blanks' do
+      record = @class.new(:foo => 'foo', :baz => 'bazoo')
+      
+      assert_equal "foo  bazoo", record.to_s
+    end
+  end
+  
   context 'hash input' do
     setup do
       @class = Class.new(Fixity::Record) do
