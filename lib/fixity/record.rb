@@ -14,9 +14,9 @@ module Fixity
         end
         
         define_method("#{field_name}=") do |val|
-          klass = options.delete(:class)
+          klass = options.dup.delete(:class)
           klass ||= Field
-          
+                    
           @fields[field_name] = klass.new(val, options)
         end
       end
@@ -24,6 +24,10 @@ module Fixity
     
     def initialize(field_hash = nil)
       @fields = {}
+      
+      self.class.field_order.each do |f|
+        send("#{f}=", nil)
+      end
       
       update_attributes(field_hash)
     end
@@ -36,15 +40,7 @@ module Fixity
         
     def to_s
       self.class.field_order.inject("") do |str, field_name|
-        field = @fields[field_name]
-        options = self.class.field_options[field_name]
-        
-        if field
-          str << @fields[field_name].to_s
-        else
-          str << " " * options[:length]
-        end
-        
+        str << @fields[field_name].to_s
         str
       end
     end
