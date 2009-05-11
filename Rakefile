@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "fixity"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{Fixed-width file parser}
     gem.email = "bdimchef-git@wieldim.com"
     gem.homepage = "http://github.com/bdimcheff/fixity"
     gem.authors = ["Brandon Dimcheff"]
@@ -49,7 +49,7 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "fnm_parser #{version}"
+  rdoc.title = "fixity #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
